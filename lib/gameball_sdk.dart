@@ -226,7 +226,7 @@ class GameballApp extends StatelessWidget {
         borderRadius: BorderRadius.vertical(
             top: Radius.circular(20.0)), // Set the top border radius
       ),
-      builder: (BuildContext context) {
+      builder: (context) {
         String language = handleLanguage(_lang, _playerPreferredLanguage);
 
         return SizedBox(
@@ -235,7 +235,6 @@ class GameballApp extends StatelessWidget {
           child: Stack(
             children: [
               ClipRRect(
-                isScrollControlled: true,
                 borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(20.0)), // Set the top border radius
                 child: WebView(
