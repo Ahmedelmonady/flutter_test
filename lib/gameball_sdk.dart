@@ -298,7 +298,7 @@ class GameballApp extends StatelessWidget {
   }
 
   void go(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => NewScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NewScreen()));
   }
 
   @override
