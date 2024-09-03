@@ -297,8 +297,35 @@ class GameballApp extends StatelessWidget {
     return widgetUrl;
   }
 
+  void go(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => NewScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container();
+  }
+}
+
+class NewScreen extends StatelessWidget {
+  const NewScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return const Text('This is the content of the bottom sheet');
+        },
+      ),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return const Text('Bottom sheet closed');
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
   }
 }
