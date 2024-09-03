@@ -238,10 +238,14 @@ class GameballApp extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(20.0)), // Set the top border radius
                 child: SingleChildScrollView(
-                  child: WebView(
+                  child: Column(
+                    children: [
+                      WebView(
                   initialUrl: _buildWidgetUrl(),
                   javascriptMode: JavascriptMode.unrestricted,
                 ),
+                    ],
+                  )
                 )
                  
               ),
