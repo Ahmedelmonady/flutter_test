@@ -32,11 +32,13 @@ class GameballApp extends StatelessWidget {
   static String? _openDetail;
   static bool? _hideNavigation;
 
+  const GameballApp({super.key});
+
   /// Retrieves the singleton instance of the GameballApp class.
   ///
   /// Creates a new instance if it doesn't exist and returns it.
   static GameballApp getInstance() {
-    _instance ??= GameballApp();
+    _instance ??= const GameballApp();
     return _instance!;
   }
 
@@ -160,12 +162,8 @@ class GameballApp extends StatelessWidget {
       String language = handleLanguage(_lang, _playerPreferredLanguage);
       createPlayerRequest(playerRegisterRequest, _apiKey, language)
           .then((response) {
-        if (response != null) {
-          callback!(response, null);
-        } else {
-          callback!(null, null);
-        }
-      });
+        callback!(response, null);
+            });
     } catch (e) {
       callback!(null, e as Exception);
     }
@@ -298,7 +296,7 @@ class GameballApp extends StatelessWidget {
   }
 
   void go(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NewScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => _NewScreen()));
   }
 
   @override
@@ -306,26 +304,46 @@ class GameballApp extends StatelessWidget {
     return Container();
   }
 }
+class _NewScreen extends StatefulWidget {
 
-class NewScreen extends StatelessWidget {
-  const NewScreen({super.key});
+ @override
+ _NewScreenState createState() => _NewScreenState();
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return const Text('This is the content of the bottom sheet');
-        },
-      ),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return const Text('Bottom sheet closed');
-        } else {
-          return const CircularProgressIndicator();
-        }
-      },
+class _NewScreenState extends State<_NewScreen> {
+ @override
+ void initState() {
+  super.initState();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+   _showBottomSheet();
+  });
+ }
+
+ void _showBottomSheet() {
+  showModalBottomSheet(
+   context: context,
+   builder: (BuildContext context) {
+    return Container(
+     height: 200,
+     color: Colors.white,
+     child: const Center(
+      child: Text('This is a modal bottom sheet'),
+     ),
     );
-  }
+   },
+  );
+ }
+
+ @override
+ Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.transparent,
+   appBar: AppBar(
+    title: const Text('New Screen'),
+   ),
+   body: const Center(
+    child: Text('Screen Content Here'),
+   ),
+  );
+ }
 }
