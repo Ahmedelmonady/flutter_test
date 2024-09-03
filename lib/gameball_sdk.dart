@@ -237,10 +237,13 @@ class GameballApp extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(20.0)), // Set the top border radius
-                child: WebView(
+                child: SingleChildScrollView(
+                  child: WebView(
                   initialUrl: _buildWidgetUrl(),
                   javascriptMode: JavascriptMode.unrestricted,
                 ),
+                )
+                 
               ),
               Positioned(
                 top: 10.0,
