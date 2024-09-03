@@ -235,13 +235,12 @@ class GameballApp extends StatelessWidget {
           child: Stack(
             children: [
               ClipRRect(
+                isScrollControlled: true,
                 borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(20.0)), // Set the top border radius
-                child: Column(
-                  children: [ WebView(
+                child: WebView(
                   initialUrl: _buildWidgetUrl(),
                   javascriptMode: JavascriptMode.unrestricted,
-                )],
                 ),
               ),
               Positioned(
