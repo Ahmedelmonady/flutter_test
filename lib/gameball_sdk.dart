@@ -229,7 +229,8 @@ class GameballApp extends StatelessWidget {
       builder: (context) {
         String language = handleLanguage(_lang, _playerPreferredLanguage);
 
-        return Expanded(
+        return Scrollbar(
+          trackVisibility: true,
           child: SingleChildScrollView(
   child: Column(
     children: [
@@ -237,7 +238,7 @@ class GameballApp extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.93,
         child: WebView(
           key: const Key("gb_widget"),
-                     initialUrl: _buildWidgetUrl(),
+                     initialUrl: "https://youtube.com",
                      javascriptMode: JavascriptMode.unrestricted,
       ),
       )
