@@ -284,7 +284,7 @@ class GameballApp extends StatelessWidget {
 
     widgetUrl += '&os=${getDevicePlatform()}';
 
-    widgetUrl += '&sdk=Flutter/$getSdkVersion()';
+    widgetUrl += '&sdk=Flutter-${getSdkVersion()}';
 
     if (!isNullOrEmpty(_openDetail)) {
       widgetUrl += '&openDetail=$_openDetail';
@@ -293,6 +293,8 @@ class GameballApp extends StatelessWidget {
     if (_hideNavigation != null) {
       widgetUrl += '&hideNavigation=$_hideNavigation';
     }
+
+    print(widgetUrl);
 
     return widgetUrl;
   }
