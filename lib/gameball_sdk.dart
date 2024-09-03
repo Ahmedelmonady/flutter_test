@@ -294,6 +294,8 @@ class GameballApp extends StatelessWidget {
       widgetUrl += '&hideNavigation=$_hideNavigation';
     }
 
+    print(widgetUrl);
+
     return widgetUrl;
   }
 

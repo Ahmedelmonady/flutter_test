@@ -53,18 +53,18 @@ class _MyHomePageState extends State<MyHomePage> {
   GameballApp gameballApp = GameballApp.getInstance();
 
   void _testGameball() {
-    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then((response){});
+    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+        .then((response) {});
 
     // TODO Replace the values between the braces with the actual values
 
     gameballApp.init("{api_key}", "{lang}", "{platform}", "{shop}");
     setState(() {
-
       playerRegistrationCallback(response, error) {
-        if(error == null && response != null){
-          gameballApp.showProfile(context, "{playerUniqueId}", "{openDetail}", false);
-        }
-        else{
+        if (error == null && response != null) {
+          gameballApp.showProfile(
+              context, "{playerUniqueId}", "{openDetail}", false);
+        } else {
           // TODO
         }
       }
@@ -75,37 +75,24 @@ class _MyHomePageState extends State<MyHomePage> {
           lastName: "Doe",
           mobileNumber: "0123456789",
           preferredLanguage: "en",
-          customAttributes: {
-            "{key}": "{value}"
-          }
-      );
+          customAttributes: {"{key}": "{value}"});
 
-      gameballApp.registerPlayer(
-          "{playerUniqueId}",
-          "{playerEmail}",
-          "{playerMobile}",
-          playerAttributes,
-          playerRegistrationCallback);
+      gameballApp.registerPlayer("{playerUniqueId}", "{playerEmail}",
+          "{playerMobile}", playerAttributes, playerRegistrationCallback);
 
-      sendEventCallback(response, error){
-        if(error == null && response != null){
+      sendEventCallback(response, error) {
+        if (error == null && response != null) {
           // TODO
-        }
-        else{
+        } else {
           // TODO
         }
       }
 
-      Event eventBody = Event(
-          playerUniqueId: "{playerUniqueId}",
-          events: {
-            "{eventName}": {
-              "{prop1}": "{value1}"
-            }
-          });
+      Event eventBody = Event(playerUniqueId: "{playerUniqueId}", events: {
+        "{eventName}": {"{prop1}": "{value1}"}
+      });
 
       gameballApp.sendEvent(eventBody, sendEventCallback);
-
     });
   }
 
