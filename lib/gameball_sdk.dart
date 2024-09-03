@@ -218,11 +218,6 @@ class GameballApp extends StatelessWidget {
   /// Arguments:
   ///   - `context`: The build context for creating the bottom sheet.
   void _openBottomSheet(BuildContext context) {
-
-    WebViewController controller = WebViewController()
-  ..setJavaScriptMode(JavaScriptMode.unrestricted)
-  ..loadRequest(Uri.parse(_buildWidgetUrl()));
-
     showModalBottomSheet(
       isScrollControlled: true,
       isDismissible: true,
@@ -242,11 +237,12 @@ class GameballApp extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(20.0)), // Set the top border radius
-                // child: WebView(
-                //   initialUrl: _buildWidgetUrl(),
-                //   javascriptMode: JavascriptMode.unrestricted,
-                // )
-                child: WebViewWidget(controller: controller),
+                child: Column(
+                  children: [ WebView(
+                  initialUrl: _buildWidgetUrl(),
+                  javascriptMode: JavascriptMode.unrestricted,
+                )],
+                ),
               ),
               Positioned(
                 top: 10.0,
