@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Fixed an issue while building the widget url
+
 ## 1.0.1
 
 * Cleaned up unused imports, removed unnecessary code

@@ -226,52 +226,36 @@ class GameballApp extends StatelessWidget {
         borderRadius: BorderRadius.vertical(
             top: Radius.circular(20.0)), // Set the top border radius
       ),
-      builder: (context) {
+      builder: (BuildContext context) {
         String language = handleLanguage(_lang, _playerPreferredLanguage);
 
-        return Scrollbar(
-          trackVisibility: true,
-          child: SingleChildScrollView(
-  child: Column(
-    children: [
-      Container(
-        height: MediaQuery.of(context).size.height * 0.93,
-        child: WebView(
-          key: const Key("gb_widget"),
-                     initialUrl: "https://youtube.com",
-                     javascriptMode: JavascriptMode.unrestricted,
-      ),
-      )
-    ],
-  )
-)
-          );
-          
-        //   SizedBox(
-        //   height: MediaQuery.of(context).size.height * 0.93,
-        //   // Adjust the height as desired (e.g., 95% of the screen height)
-        //   child: Stack(
-        //     children: [
-        //       ClipRRect(
-        //         borderRadius: const BorderRadius.vertical(
-        //             top: Radius.circular(20.0)), // Set the top border radius
-        //         child: 
-        //       ),
-        //       Positioned(
-        //         top: 10.0,
-        //         left: isRtl(language) ? 10.0 : null,
-        //         right: isLtr(language) ? 10.0 : null,
-        //         child: IconButton(
-        //           icon: const Icon(Icons.close),
-        //           onPressed: () {
-        //             Navigator.of(context).pop();
-        //           },
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // );
-        
+        return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.93,
+          // Adjust the height as desired (e.g., 95% of the screen height)
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(20.0)), // Set the top border radius
+                child: WebView(
+                  initialUrl: _buildWidgetUrl(),
+                  javascriptMode: JavascriptMode.unrestricted,
+                ),
+              ),
+              Positioned(
+                top: 10.0,
+                left: isRtl(language) ? 10.0 : null,
+                right: isLtr(language) ? 10.0 : null,
+                child: IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
       },
     );
   }
@@ -309,8 +293,6 @@ class GameballApp extends StatelessWidget {
     if (_hideNavigation != null) {
       widgetUrl += '&hideNavigation=$_hideNavigation';
     }
-
-    print(widgetUrl);
 
     return widgetUrl;
   }
