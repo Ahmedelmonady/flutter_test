@@ -229,7 +229,9 @@ class GameballApp extends StatelessWidget {
       builder: (context) {
         String language = handleLanguage(_lang, _playerPreferredLanguage);
 
-        return SizedBox(
+        return 
+        SingleChildScrollView(
+          child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.93,
           // Adjust the height as desired (e.g., 95% of the screen height)
           child: Stack(
@@ -237,17 +239,10 @@ class GameballApp extends StatelessWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(20.0)), // Set the top border radius
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      WebView(
-                  initialUrl: _buildWidgetUrl(),
-                  javascriptMode: JavascriptMode.unrestricted,
-                ),
-                    ],
-                  )
-                )
-                 
+                child: WebView(
+                       initialUrl: _buildWidgetUrl(),
+                       javascriptMode: JavascriptMode.unrestricted,
+                     )
               ),
               Positioned(
                 top: 10.0,
@@ -263,6 +258,7 @@ class GameballApp extends StatelessWidget {
             ],
           ),
         );
+        )
       },
     );
   }
